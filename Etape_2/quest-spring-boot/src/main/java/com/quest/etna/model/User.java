@@ -1,12 +1,19 @@
 package com.quest.etna.model;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 @Entity
 public class User {
@@ -20,24 +27,26 @@ public class User {
 	@Column(nullable = false)
 	private String password;
 	
+	@Enumerated(EnumType.STRING)
 	@Column(nullable = false)
 	private UserRole role = UserRole.ROLE_USER;
 	
-	@Column(nullable = true)
+	@Column(nullable = false)
+	@CreationTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date creationDate;
 	
-	@Column(nullable = true)
+	@UpdateTimestamp
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(nullable = false)
 	private Date updatedDate;
 	
 	public User(){}
 
-	public User(String username, String password, UserRole role, Date creationDate, Date updatedDate) {
+	public User(String username, String password) {
 		super();
 		this.username = username;
 		this.password = password;
-		this.role = role;
-		this.creationDate = creationDate;
-		this.updatedDate = updatedDate;
 	}
 
 	public Integer getId() {

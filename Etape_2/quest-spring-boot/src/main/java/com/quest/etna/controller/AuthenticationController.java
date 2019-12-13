@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.quest.etna.model.User;
@@ -20,26 +21,29 @@ public class AuthenticationController {
 	@Autowired
 	private UserRepository userRepo;
 	
-	@PostMapping(value="/register/{username}/{pass}")
-	public ResponseEntity<User> register(@PathVariable("username") String username, @PathVariable("pass") String pass ) {
+	@PostMapping(value="/register")
+	public ResponseEntity<User> register(@RequestBody User uPost ) {
+
 		User user = new User();
 		try {
-			user = userRepo.findByUsername(username);
+			user = userRepo.findByUsername(uPost.getUsername());
 			
 			if (user != null) {
 				return new ResponseEntity( HttpStatus.CONFLICT ); //409 when the user already exists
 			}
 			
-			long millis = System.currentTimeMillis();
-			user = new User(username, pass, UserRole.ROLE_USER, new Date(millis), new Date(millis));
+			//long millis = System.currentTimeMillis();
+			//user = new User(username, pass, UserRole.ROLE_USER, new Date(millis), new Date(millis));
 		
-			user = userRepo.save(user);
+			user = userRepo.save(uPost);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseEntity( HttpStatus.SERVICE_UNAVAILABLE ); //503 in case of uncatched error while creating user
 		}
 		 
 		return new ResponseEntity( new UserDetails(user), HttpStatus.CREATED ); //201 when user is created successfully
+		
+		
 	}
 
 }
