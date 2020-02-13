@@ -1,0 +1,18 @@
+<section>
+  <div class="w-50 mx-auto pt-5">
+    <ul class="list-inline pb-5" *ngFor="let post of postList">
+      <div class="card">
+        <div class="card-header">
+          {{post.title}}
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{post.content}}</p>
+          <button class="btn btn-primary" (click)="gotoPostDetail('/post', post.id)">Show post</button>
+        </div>
+        <div class="card-body">
+          <p class="card-text">{{post.categorie}}</p>
+        </div>
+      </div>
+    </ul>
+  </div>
+</section>

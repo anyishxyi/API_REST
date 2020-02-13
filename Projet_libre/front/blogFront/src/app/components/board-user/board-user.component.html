@@ -1,0 +1,48 @@
+<section>
+  <h1>
+    Welcome {{userData.user.username}}
+  </h1>
+  <form [formGroup]="formGroup" (ngSubmit)="onSubmit(formGroup.value)">
+    <div class="form-group">
+      <label for="postTitle">Post title:</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="write a title"
+        formControlName="postTitle">
+    </div>
+    <div class="form-group">
+      <label for="exampleFormControlTextarea1">Description:</label>
+      <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" formControlName="postContent"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="postCategorie">Post Categorie:</label>
+      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="write your Categorie"
+        formControlName="postCategorie">
+    </div>
+    <button type=" submit">create</button>
+  </form>
+  <h2>Your posts:</h2>
+  <div class="w-50 mx-auto pt-5">
+    <ul class="list-inline pb-5" *ngFor="let post of userData.user.posts">
+      <div class="card" style="width: 18rem;">
+        <div class="card-header">
+          {{post.title}}
+          <button class="btn btn-danger" (click)="deletePost(post.id)"></button>
+        </div>
+        <div class="card-body">
+          <h1>Post content:</h1>
+          {{post.content}}
+        </div>
+        <div class="card-body">
+          <h1>Post Categorie:</h1>
+          {{post.content}}
+        </div>
+        <div class="card-body">
+          <h1>Post Categorie:</h1>
+          {{post.content}}
+        </div>
+        <ul class="list-group list-group-flush" *ngFor="let comment of post.comments">
+          <li class="list-group-item">{{comment.content}}</li>
+        </ul>
+      </div>
+    </ul>
+  </div>
+</section>
