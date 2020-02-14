@@ -61,6 +61,7 @@ public class AuthenticationController {
                 usertoRegister.setUsername(userAuthen.getUsername());
                 usertoRegister.setPassword(StringUtils.hashBcrypt(userAuthen.getPassword()));
                 usertoRegister.setEmail(userAuthen.getEmail());
+                //usertoRegister.setRole();
                 usertoRegister = userRepository.save(usertoRegister);
                 userDetailsToRegister = new UserDetails(usertoRegister);
             }

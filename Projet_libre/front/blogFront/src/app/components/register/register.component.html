@@ -1,4 +1,4 @@
-<div class="col-md-12">
+<!-- <div class="col-md-12">
   <div class="card card-container w-50 mt-5 mx-auto">
     <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
     <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
@@ -50,5 +50,59 @@
     <div class="alert alert-success" *ngIf="isSuccessful">
       Your registration is successful!
     </div>
+  </div>
+</div> -->
+
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+
+    <h2 class="active"> Sign Up </h2>
+
+    <form
+      name="form"
+      (ngSubmit)="f.form.valid && onSubmit()"
+      #f="ngForm"
+      novalidate
+    >
+      <input
+        type="text"
+        id="login"
+        class="fadeIn second"
+        placeholder="login"
+        name="username"
+        [(ngModel)]="form.username"
+        required
+        #username="ngModel"
+      >
+      <input
+        id="email"
+        class="fadeIn third"
+        placeholder="email"
+        type="text"
+        name="email"
+        [(ngModel)]="form.email"
+        required
+        email
+        minlength="6"
+        #email="ngModel"
+      >
+      <input
+        id="password"
+        class="fadeIn third"
+        placeholder="password"
+        type="text"
+        name="password"
+        [(ngModel)]="form.password"
+        required
+        minlength="6"
+        #password="ngModel"
+      >
+      <input type="submit" class="fadeIn fourth" value="Log In">
+    </form>
+
+    <div id="formFooter">
+      <a class="underlineHover" href="/login">Vous avez déjà un compte? Login</a>
+    </div>
+
   </div>
 </div>

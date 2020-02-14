@@ -40,7 +40,7 @@ public class User {
     private String email;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "user_role")
+    @Column(nullable = false)
     private UserRole role = UserRole.ROLE_USER;
 
     @CreationTimestamp

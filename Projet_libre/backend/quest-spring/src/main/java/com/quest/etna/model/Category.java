@@ -33,12 +33,10 @@ public class Category {
 	
 	  @CreationTimestamp
 	  @Temporal(TemporalType.TIMESTAMP)
-	  @Column(name = "creation_date")
 	  private Date creationDate;
 
 	  @UpdateTimestamp
 	  @Temporal(TemporalType.TIMESTAMP)
-	  @Column(name = "update_date")
 	  private Date updatedDate;
 	  
 	  @ManyToOne

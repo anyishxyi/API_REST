@@ -14,6 +14,10 @@ import { BoardAdminComponent } from './components/board-admin/board-admin.compon
 import { authInterceptorProviders } from '../helpers/auth.interceptor';
 import { PostDetailComponent } from './components/post-detail/post-detail.component';
 
+import { ElModule } from 'element-angular';
+
+import 'element-angular/theme/index.css';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,7 +33,8 @@ import { PostDetailComponent } from './components/post-detail/post-detail.compon
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ElModule.forRoot()
   ],
   providers: [authInterceptorProviders],
   bootstrap: [AppComponent]
